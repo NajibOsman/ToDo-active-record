@@ -1,9 +1,7 @@
-require("sinatra")
-require("sinatra/reloader")
-require("sinatra/activerecord")
-also_reload("lib/**/*.rb")
-require("./lib/task")
-require("pg")
+require("bundler/setup")
+Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
+Bundler.require(:default)
+
 
 get('/') do
   @tasks = Task.all()
